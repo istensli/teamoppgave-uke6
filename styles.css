@@ -1,0 +1,21 @@
+#coolness-bar{
+    width: 50%;
+    background-color: lightgray;
+}
+
+#inner-coolness-bar{
+    width: 1%;
+    height: 30px;
+    background-color: blue;
+}
+
+#fuel-bar{
+    width: 50%;
+    background-color: lightgray;
+}
+
+#inner-fuel-bar{
+    width: 1%;
+    height: 30px;
+    background-color: brown;
+}
