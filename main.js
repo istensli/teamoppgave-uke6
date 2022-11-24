@@ -25,19 +25,23 @@ let car = {name: 'BMW', driveable: true, fuelLeft: 100, items: [], coolness: fun
 }};
 
 
-//bare en tanke, slå sammen disse arrayene??
+
 let items = [
-    {name: 'Brukt Oljetank', coolness: -15, fuel: 50},
+    {name: 'Delvis brukt dieseltank', coolness: -15, fuel: 30},
     {name: 'Brukt kebab', coolness: -20},
-    {name: 'Bleier', coolness: -60},
+    {name: 'Bulk i panser', coolness: -40},
     {name: 'Våte sokker', coolness: -25},
     {name: 'Grus', coolness: -15},
-    {name: 'Bæsj', coolness: -99},
-    {name: 'Coca cola flaske', coolness: 15},
-    {name: 'Big mac meny', coolness: 35},
-    {name: 'Gullkjede', coolness: 20},
-    {name: 'Rolex', coolness: 70},
-    {name: 'Gavekort til diesel', coolness: 15, fuel: 45}
+    {name: 'Ripe i lakken', coolness: -25},
+    {name: 'Coca cola flaske', coolness: -5},
+    {name: 'Big mac meny', coolness: -10},
+    {name: 'Gullkjede', coolness: 15},
+    {name: 'Rolex', coolness: 30},
+    {name: 'Gavekort til diesel 250kr', coolness: -5, fuel: 50},
+    {name: 'Gavekort til diesel 500kr', coolness: -5, fuel: 100},
+    {name: 'Fartsstriper', coolness: 15},
+    {name: 'Wunderbaum', coolness: 20},
+    {name: 'Fete felger', coolness: 30}
     
     
 ];
@@ -73,17 +77,17 @@ Noen ganger møter man også på en kompis langs veien - han må du hilse på f�
 
 function getGreetingFromFriend(){
     if(car.coolness() < 30){
-            document.getElementById('output').innerHTML = "Lite kul hilsen";
+            document.getElementById('output').innerHTML = "Lite kul hilsen. Du kan nå kjøre";
             car.driveable = true;
             return "Lite kul hilsen";
     }
     else if(car.coolness() < 60){
-            document.getElementById('output').innerHTML = "Litt kul hilsen";
+            document.getElementById('output').innerHTML = "Litt kul hilsen. Du kan nå kjøre";
             car.driveable = true;
             return "Litt kul hilsen";
     }
     else{
-            document.getElementById('output').innerHTML = "Skikkelig kul hilsen";
+            document.getElementById('output').innerHTML = "Skikkelig kul hilsen. Du kan nå kjøre";
             car.driveable = true;
             return "Skikkelig kul hilsen";
             
@@ -154,12 +158,17 @@ function setRequiredGreeting(){
 
 function greet(greetNumber){
     if(greetNumber == requiredGreeting){
-        document.getElementById('output').innerHTML = 'Your greeting was corrext!: ';
+        document.getElementById('output').innerHTML = 'Your greeting was corrext!';
         setTimeout(getGreetingFromFriend, 2000);
         
     }
     else{
-        document.getElementById('output').innerHTML = 'Your have to greet again!: ';
+        document.getElementById('output').innerHTML = 'Your have to greet again! <br />';
+        document.getElementById('output').innerHTML += 'Du mister bensin mens bilen går på tomgang';
+        car.fuelLeft -= 5;
+        updateFuelBar();
+        checkIfHasWonOrNoFuelLeft();
+
     }
 
 
@@ -204,7 +213,7 @@ function equip(){
 
     updateFuelBar();
     updateCoolnessBar();
-    updateCoolnessDiv();
+    //updateCoolnessDiv();
     showCarList();
     car.driveable = true;
     checkIfHasWonOrNoFuelLeft();
@@ -237,9 +246,10 @@ function drive(){
 
 }
 
+/*
 function updateCoolnessDiv(){
     document.getElementById('coolness').innerHTML = `Coolness: ${getCoolnessFromCar()}`;
-}
+}*/
 
 function showCarList(){
     html = '<ul>';
@@ -266,11 +276,13 @@ function checkIfHasWonOrNoFuelLeft(){
     if(getCoolnessFromCar() >= 100){
         car.driveable = false;
         document.getElementById('output').innerHTML = "You have reached a coolness of 100!";
+        //win screen
         
     }
     if(car.fuelLeft <= 0){
         car.driveable = false;
         document.getElementById('output').innerHTML = "You have run out of fuel!";
+        //lose screen
     }
 
 }
