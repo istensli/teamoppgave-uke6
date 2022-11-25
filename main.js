@@ -37,8 +37,8 @@ let items = [
     {name: 'Big mac meny', coolness: -10},
     {name: 'Gullkjede', coolness: 15},
     {name: 'Rolex', coolness: 30},
-    {name: 'Gavekort til diesel 250kr', coolness: -5, fuel: 50},
-    {name: 'Gavekort til diesel 500kr', coolness: -5, fuel: 100},
+    {name: 'Gavekort til diesel 500kr', coolness: -5, fuel: 50},
+    {name: 'Gavekort til diesel 1000kr', coolness: -5, fuel: 100},
     {name: 'Fartsstriper', coolness: 15},
     {name: 'Wunderbaum', coolness: 20},
     {name: 'Fete felger', coolness: 30}
@@ -77,17 +77,17 @@ Noen ganger møter man også på en kompis langs veien - han må du hilse på f�
 
 function getGreetingFromFriend(){
     if(car.coolness() < 30){
-            document.getElementById('output').innerHTML = "Lite kul hilsen. Du kan nå kjøre";
+            document.getElementById('output').innerHTML = "Lite kul hilsen tilbake. Du kan nå kjøre";
             car.driveable = true;
             return "Lite kul hilsen";
     }
     else if(car.coolness() < 60){
-            document.getElementById('output').innerHTML = "Litt kul hilsen. Du kan nå kjøre";
+            document.getElementById('output').innerHTML = "Litt kul hilsen tilbake. Du kan nå kjøre";
             car.driveable = true;
             return "Litt kul hilsen";
     }
     else{
-            document.getElementById('output').innerHTML = "Skikkelig kul hilsen. Du kan nå kjøre";
+            document.getElementById('output').innerHTML = "Skikkelig kul hilsen tilbake. Du kan nå kjøre";
             car.driveable = true;
             return "Skikkelig kul hilsen";
             
@@ -158,12 +158,12 @@ function setRequiredGreeting(){
 
 function greet(greetNumber){
     if(greetNumber == requiredGreeting){
-        document.getElementById('output').innerHTML = 'Your greeting was corrext!';
+        document.getElementById('output').innerHTML = 'Din hilsen var riktig!';
         setTimeout(getGreetingFromFriend, 2000);
         
     }
     else{
-        document.getElementById('output').innerHTML = 'Your have to greet again! <br />';
+        document.getElementById('output').innerHTML = 'Du må hilse på nytt! <br />';
         document.getElementById('output').innerHTML += 'Du mister bensin mens bilen går på tomgang';
         car.fuelLeft -= 5;
         updateFuelBar();
@@ -177,7 +177,7 @@ function greet(greetNumber){
 function meetFriend(){
     let friendNr = getRandomNumber(0, 2);
 
-    document.getElementById('output').innerHTML = 'You have encountered a friend: ' + friends[friendNr];
+    document.getElementById('output').innerHTML = 'Du har møtt på en kompis; ' + friends[friendNr];
     setRequiredGreeting();
     car.driveable = false;
     
@@ -188,7 +188,7 @@ function meetFriend(){
 
 function meetItem(){
     itemIndex = getRandomNumber(0, (items.length-1));
-    document.getElementById('output').innerHTML = 'You have encountered an item: ' +
+    document.getElementById('output').innerHTML = 'Du har møtt på en ting; ' +
                                                     items[itemIndex].name;
 
 
@@ -238,6 +238,7 @@ function drive(){
 
     car.fuelLeft -= 5;
     updateFuelBar();
+    checkIfHasWonOrNoFuelLeft();
 
     car.driveable = false;
 
@@ -275,14 +276,16 @@ function addItemToCar(index){
 function checkIfHasWonOrNoFuelLeft(){
     if(getCoolnessFromCar() >= 100){
         car.driveable = false;
-        document.getElementById('output').innerHTML = "You have reached a coolness of 100!";
+        document.getElementById('output').innerHTML = "Du har nådd 100 i kulhet!";
         //win screen
+        document.getElementById('app').innerHTML = "Du har nådd 100 i kulhet!";
         
     }
     if(car.fuelLeft <= 0){
         car.driveable = false;
-        document.getElementById('output').innerHTML = "You have run out of fuel!";
+        document.getElementById('output').innerHTML = "Du har gått tom for drivstoff!";
         //lose screen
+        document.getElementById('app').innerHTML = "Du har gått tom for drivstoff!";
     }
 
 }
@@ -298,7 +301,7 @@ function updateCoolnessBar(){
         width = 0;
 
     }
-    innerBarDiv.style.width = width + '%';//width * 0.5??
+    innerBarDiv.style.width = width + '%';
     innerBarDiv.innerHTML = width + '%';
 
 }
