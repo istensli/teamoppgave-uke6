@@ -1,25 +1,20 @@
 
 
 let itemIndex;
-//let negativeItemIndex;
+
 
 let requiredGreeting;
 
 //------------------
-/*
-let carName = "";
-let carItems = [];
-let carFuel = 100;
-let carDriveable = true;
-*/
+
 
 let car = {name: 'BMW', driveable: true, fuelLeft: 100, items: [], coolness: function(){
     let coolnessSum = 0;
     for(let item of this.items){ 
         coolnessSum += item.coolness;
-        //console.log(item.name);
+        
     }
-    //console.log("Her kjører anonym funksjon, og returnerer sum: " + coolnessSum);
+    
     return coolnessSum;
 
 }};
@@ -45,16 +40,7 @@ let items = [
     
     
 ];
-/*
-let positiveItems = [
-    {name: 'Coca cola flaske', coolness: 15},
-    {name: 'Big mac meny', coolness: 35},
-    {name: 'Gullkjede', coolness: 20},
-    {name: 'Rolex', coolness: 70},
-    {name: 'Gavekort til diesel', coolness: 15, fuel: 45}
-];*/
 
-// Funksjoner for kompiser
 
 
 let friends = ['Kompis1', 'Kompis2', 'Kompis3'];
@@ -139,9 +125,7 @@ function meetItemOrFriend(){
         meetFriend();
 
     }
-    else {//rett og slett bare slå sammen arrayene for positive og negative items??
-        //if(randomNumber < 5) meetNegativeItem();
-        //else meetPositiveItem();
+    else {
         meetItem();
 
     }
@@ -150,7 +134,7 @@ function meetItemOrFriend(){
 
 
 
-//-------------------------------------------------------
+
 
 function setRequiredGreeting(){
     requiredGreeting = getRandomNumber(0, 2);
@@ -194,15 +178,7 @@ function meetItem(){
 
 
 }
-/*
-function meetNegativeItem(){
-    negativeItemIndex = getRandomNumber(0, (negativeItems.length-1));
-    document.getElementById('output').innerHTML = 'You have encountered an item: ' +
-                                                    negativeItems[negativeItemIndex].name;
 
-
-
-}*/
 
 function equip(){
     if(itemIndex == undefined)return;
@@ -213,7 +189,7 @@ function equip(){
 
     updateFuelBar();
     updateCoolnessBar();
-    //updateCoolnessDiv();
+    
     showCarList();
     car.driveable = true;
     checkIfHasWonOrNoFuelLeft();
@@ -232,7 +208,7 @@ function ignore(){
 function drive(){
     if(car.driveable == false) return;
     meetItemOrFriend();
-    //meetPositiveItem();
+    
    
     console.log(car.items);
 
@@ -247,10 +223,6 @@ function drive(){
 
 }
 
-/*
-function updateCoolnessDiv(){
-    document.getElementById('coolness').innerHTML = `Coolness: ${getCoolnessFromCar()}`;
-}*/
 
 function showCarList(){
     html = '<ul>';
@@ -324,7 +296,7 @@ function updateFuelBar(){
 
 
 
-//mangler logikk for bensin/diesel
-//bug: man kan equippe forrige element hvis man hilser på kompis - fikset!
-//lage progress-bar
-//bug: ting kan finnes på nytt!eller er det bug??
+
+
+
+//bug: man kan ignorere kompiser
