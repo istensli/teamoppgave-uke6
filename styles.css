@@ -35,7 +35,7 @@ div.app{
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
     grid-template-areas:    'carList output'
-                            'buttons pics'
+                            'pics pics'
                             'bars bars';
 
 
@@ -44,10 +44,16 @@ div.app{
 div.carList{
     grid-area: carList; 
     font-size: large;  
+    
+    position: relative; top: 50%;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 div.output{
     grid-area: output;
     font-size: 1.5cm;
+    text-align: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    position: relative; top: 50%;
 }
 div.buttons{
     grid-area: buttons;
@@ -58,9 +64,19 @@ div.pics{
 div.bars{
     grid-area: bars;
     font-size: large;
+    border: solid black 2px;
+    min-width: 400px;
+    padding: 10px;
 }
 
 #driveBtn{
     height: 50px;
     width: 100px;
 }
+
+#buttons{
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+}
+
